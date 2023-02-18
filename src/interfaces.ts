@@ -1,0 +1,1 @@
+export type CallBackEvents = "error"|"message"|"open"
