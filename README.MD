@@ -4,7 +4,7 @@ This is a simple NodeJsClient to consume and publish from [interClusterQueueMana
 
 ## How to use It ?
 
-##### - Initialize the consumer  :
+####  Initialize the consumer  :
 
 ```typescript
     const consumer  = new EventConsumer('http://127.0.0.1:3600',{});
@@ -33,19 +33,18 @@ Now you can start consuming from your topics:
 
 ```
 
-# HOW to use publisher
+# How to use publisher
 
 The publisher is used to send event to topics
 
+####  Initialize the publisher  :
 
-##### - Initialize the publisher  :
 ```typescript
     const publisher = new EventPublisher('http://127.0.0.1:3600');
 ```
 
+####  start to publish your events  :
 
-
-##### - start to publish your events  :
 ```typescript
         try {
             await publisher.publish("deals", {
