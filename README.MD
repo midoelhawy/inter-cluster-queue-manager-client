@@ -35,7 +35,7 @@ Now you can start consuming from your topics:
 
 # HOW to use publisher
 
-The publisher is used to send event one a X topic
+The publisher is used to send event to topics
 
 
 ##### - Initialize the publisher  :
