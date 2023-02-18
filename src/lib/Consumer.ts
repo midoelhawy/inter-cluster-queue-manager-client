@@ -10,7 +10,7 @@ export class EventConsumer {
     }
 
     baseUrl: string
-    topics?: string|string[]
+    topics?: string | string[]
     eventSource?: EventSource
     callBackEvents: {
         error: (err: { type: "error", message: string }) => void,
@@ -39,11 +39,11 @@ export class EventConsumer {
 
 
 
-    startConsumeFromTopics(topics:string|string[]) {
+    startConsumeFromTopics(topics: string | string[]) {
         let _topics = ''
         if (Array.isArray(topics)) {
-            _topics = topics.map(p=>`topic=${p}`).join("&")
-        }else{
+            _topics = topics.map(p => `topic=${p}`).join("&")
+        } else {
             _topics = `topic=${topics}`
         }
 
@@ -62,7 +62,7 @@ export class EventConsumer {
 
 
     #processEvent(type: CallBackEvents, event: any) {
-        const obj = Object.assign({},{...event}) 
+        const obj = Object.assign({}, { ...event })
         if (type == "error") {
             typeof this.callBackEvents?.error == "function" && this.callBackEvents?.error(obj)
         } else if (type == "message") {
@@ -76,7 +76,14 @@ export class EventConsumer {
 
 
     public on(type: "error", cb: (err: { type: "error", message: string }) => void): void;
-    public on(type: "message", cb: (msg: { type: "message", message: string }) => void): void;
+    public on(type: "message", cb: (msg: {
+        type: "message",
+        data: {
+            timestamp: Date,
+            event: any,
+            topic: string
+        }
+    }) => void): void;
     public on(type: "open", cb: (e: { type: "open" }) => void): void;
     public on(type: CallBackEvents, cb: any) {
         this.callBackEvents[type] = cb
