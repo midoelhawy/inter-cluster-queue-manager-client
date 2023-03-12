@@ -7,12 +7,14 @@ exports.EventPublisher = void 0;
 const node_fetch_1 = __importDefault(require("node-fetch"));
 class EventPublisher {
     baseUrl;
-    constructor(baseUrl) {
+    debugMode;
+    constructor(baseUrl, debugMode = false) {
         this.baseUrl = baseUrl;
+        this.debugMode = debugMode;
     }
     async publish(topic, message) {
         try {
-            await (0, node_fetch_1.default)(`${this.baseUrl}/sendMessageToTopic`, {
+            const res = await (0, node_fetch_1.default)(`${this.baseUrl}/sendMessageToTopic`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -22,7 +24,17 @@ class EventPublisher {
                     'message_body': message
                 })
             });
-            //const data = await  res.json();
+            if (this.debugMode) {
+                try {
+                    const data = await res.json();
+                    if (data) {
+                        console.log(`sent response : ${JSON.stringify(data, null, '\t')}`);
+                    }
+                }
+                catch (therr) {
+                    console.error(`server return 200 ok i got error while parsing response`);
+                }
+            }
         }
         catch (err) {
             throw err;
