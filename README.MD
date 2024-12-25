@@ -5,6 +5,10 @@ This is a simple NodeJsClient to consume and publish from [interClusterQueueMana
 ## How to use It ?
 
 ####  Initialize the consumer  :
+```
+npm i inter-cluster-queue-manager-client
+```
+
 
 ```typescript
     const consumer  = new EventConsumer('http://127.0.0.1:3600',{});
