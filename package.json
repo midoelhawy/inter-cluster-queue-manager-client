@@ -1,6 +1,6 @@
 {
   "name": "inter-cluster-queue-manager-client",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "This project was implemented to solve the poblem of data communication between applications/replicas in a cluster.",
   "main": ".dist/index.js",
   "types": ".dist/index.d.ts",
